@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TMPDIR=$(mktemp -d /tmp/coreos.XXXX)
+SIZE=$1
 
 for version in alpha beta stable; do
     echo "Download CoreOS"
@@ -22,7 +23,7 @@ for version in alpha beta stable; do
     CORE_OS_VERSION=$(cat "$TMPDIR"/coreos."$version".version|grep COREOS_VERSION_ID|cut -d '=' -f 2)
 
     qemu-img convert -c -f qcow2 -O qcow2 "$TMPDIR"/coreos_"$version".qcow2 "$TMPDIR"/coreos_"$version"_"$CORE_OS_VERSION".qcow2
-    qemu-img resize "$TMPDIR"/coreos_"$version"_"$CORE_OS_VERSION".qcow2 20G
+    qemu-img resize "$TMPDIR"/coreos_"$version"_"$CORE_OS_VERSION".qcow2 $(SIZE)
     rm "$TMPDIR"/coreos_"$version".qcow2
 
     echo "Uploading $version image"
