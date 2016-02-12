@@ -31,7 +31,7 @@ for version in alpha beta stable; do
     rm "$TMPDIR"/coreos_"$version".qcow2
 
     echo "Uploading $version image"
-    s3cmd put "$TMPDIR"/coreos_"$version"_"$CORE_OS_VERSION".qcow2 s3://$S3BUCKET/coreos_"$version"_"$CORE_OS_VERSION".qcow2 --acl-public
+    s3cmd put "$TMPDIR"/coreos_"$version"_"$CORE_OS_VERSION".qcow2 s3://$S3BUCKET/"$version".qcow2 --acl-public
     rm "$TMPDIR"/coreos_"$version"_"$CORE_OS_VERSION".qcow2
     rm "$TMPDIR"/coreos."$version".version
 done
