@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TMPDIR=$(mktemp -d /tmp/coreos.XXXX)
+TMPDIR=$(mktemp -d coreos.XXXX)
 SIZE=$1
 S3BUCKET=$2
 
